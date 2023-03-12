@@ -8,7 +8,7 @@ const dayValue = timer.querySelector(`[data-days]`);
 const hourValue = timer.querySelector(`[data-hours]`);
 const minuteValue = timer.querySelector(`[data-minutes]`);
 const secondValue = timer.querySelector(`[data-seconds]`);
-let selectedDates = null;
+let selectedDate = null;
 
 const options = {
   enableTime: true,
@@ -27,7 +27,7 @@ const options = {
 };
 
 const now = new Date().getTime();
-const userPick = options.selectedDate;
+const userPick = selectedDate.getTime();
 const ms = userPick - now;
 
 startBtn.addEventListener('click', () => {
