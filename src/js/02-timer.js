@@ -26,20 +26,19 @@ const options = {
   },
 };
 
-const now = new Date().getTime();
-const userPick = selectedDate.getTime();
-const ms = userPick - now;
-
 startBtn.addEventListener('click', () => {
   setInterval(() => {
-    dayValue.textContent = addLeadingZero(convertMs(ms).days);
-    hourValue.textContent = addLeadingZero(convertMs(ms).hours);
-    minuteValue.textContent = addLeadingZero(convertMs(ms).minutes);
-    secondValue.textContent = addLeadingZero(convertMs(ms).seconds);
+    dayValue.textContent = addLeadingZero(convertMs().days);
+    hourValue.textContent = addLeadingZero(convertMs().hours);
+    minuteValue.textContent = addLeadingZero(convertMs().minutes);
+    secondValue.textContent = addLeadingZero(convertMs().seconds);
   }, 1000);
 });
 
-function convertMs(ms) {
+function convertMs() {
+  const now = new Date().getTime();
+  const userPick = selectedDate.getTime();
+  const ms = userPick - now;
   // Number of milliseconds per unit of time
   const second = 1000;
   const minute = second * 60;
