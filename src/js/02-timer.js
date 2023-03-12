@@ -8,24 +8,26 @@ const dayValue = timer.querySelector(`[data-days]`);
 const hourValue = timer.querySelector(`[data-hours]`);
 const minuteValue = timer.querySelector(`[data-minutes]`);
 const secondValue = timer.querySelector(`[data-seconds]`);
-function onClose(selectedDates) {
-  if (selectedDate < new Date()) {
-    window.alert('Please choose a date in the future');
-    return;
-  } else {
-    startBtn.disabled = false;
-  }
-}
+let selectedDates = null;
 
 const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
-  onClose,
+  onClose(selectedDates) {
+    selectedDate = selectedDates[0];
+    if (selectedDate < new Date()) {
+      window.alert('Please choose a date in the future');
+      return;
+    } else {
+      startBtn.disabled = false;
+    }
+  },
 };
 
-const userPick = selectedDates[0].getTime();
+const now = new Date().getTime();
+const userPick = options.selectedDate;
 const ms = userPick - now;
 
 startBtn.addEventListener('click', () => {
