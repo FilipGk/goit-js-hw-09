@@ -9,6 +9,7 @@ const hourValue = timer.querySelector(`[data-hours]`);
 const minuteValue = timer.querySelector(`[data-minutes]`);
 const secondValue = timer.querySelector(`[data-seconds]`);
 let selectedDate = null;
+let timerId = null;
 
 const options = {
   enableTime: true,
@@ -27,7 +28,7 @@ const options = {
 };
 
 startBtn.addEventListener('click', () => {
-  setInterval(() => {
+  timerId = setInterval(() => {
     dayValue.textContent = addLeadingZero(convertMs().days);
     hourValue.textContent = addLeadingZero(convertMs().hours);
     minuteValue.textContent = addLeadingZero(convertMs().minutes);
@@ -53,6 +54,7 @@ function convertMs() {
   const minutes = Math.floor(((ms % day) % hour) / minute);
   // Remaining seconds
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+  1;
 
   return { days, hours, minutes, seconds };
 }
