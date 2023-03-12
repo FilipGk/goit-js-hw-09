@@ -37,10 +37,16 @@ const options = {
 
 startBtn.addEventListener('click', () => {
   timerId = setInterval(() => {
-    dayValue.textContent = addLeadingZero(convertMs().days);
-    hourValue.textContent = addLeadingZero(convertMs().hours);
-    minuteValue.textContent = addLeadingZero(convertMs().minutes);
-    secondValue.textContent = addLeadingZero(convertMs().seconds);
+    const { days, hours, minutes, seconds } = convertMs();
+    dayValue.textContent = addLeadingZero(days);
+    hourValue.textContent = addLeadingZero(hours);
+    minuteValue.textContent = addLeadingZero(minutes);
+    secondValue.textContent = addLeadingZero(seconds);
+
+    if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
+      clearInterval(timerId);
+      Notiflix.Notify.info('The End', { timeout: 100000 });
+    }
   }, 1000);
 });
 
